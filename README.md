@@ -14,7 +14,7 @@ npm i --save-dev dex-template-webpack-plugin
 **webpack.config.js**
 
 ```
-var DexTemplatePlugin = require('dexTemplatePlugin');
+var DexTemplatePlugin = require('dex-template-webpack-plugin');
 module.exports = {
 	configureWebpack: {
 		plugins: [new DexTemplatePlugin()]		
