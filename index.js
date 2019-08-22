@@ -2,18 +2,19 @@ const fs = require("fs");
 const path = require("path");
 const archiver = require("archiver");
 const cheerio = require("cheerio");
-var appDir = path.dirname(require.main.filename);
-
+var appDir = path.resolve("./");
+var metadataPath = path.resolve("metadata.json")
 
 class DexTemplatePlugin {
   apply(compiler) {
     compiler.hooks.done.tap("Bindings Plugin", stats => {
-      if (!fs.existsSync(appDir+"/metadata.json")) {
+      if (!fs.existsSync(metadataPath)) {
+        console.log("Missing metadata.json")
         return;
       }
-      var metadata = require(appDir+"/metadata.json");
+      var metadata = require(metadataPath);
       fs.copyFileSync(
-        appDir+"/metadata.json",
+        metadataPath,
         path.join(compiler.options.output.path, "metadata.json")
       );
 
