@@ -1,10 +1,9 @@
 {
   "name": "dex-template-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Webpack plugin for packaging Dex templates",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/demilp/dex-template-webpack-plugin.git"
