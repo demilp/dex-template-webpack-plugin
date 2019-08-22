@@ -1,0 +1,29 @@
+{
+  "name": "dex-template-webpack-plugin",
+  "version": "1.0.0",
+  "description": "Webpack plugin for packaging Dex templates",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demilp/dex-template-webpack-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "template",
+    "dex",
+    "dex-manager"
+  ],
+  "author": "demilp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/demilp/dex-template-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/demilp/dex-template-webpack-plugin#readme",
+  "dependencies": {
+    "archiver": "^3.1.1",
+    "cheerio": "^1.0.0-rc.3"
+  }
+}
