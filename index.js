@@ -3,13 +3,13 @@ const path = require("path");
 const archiver = require("archiver");
 const cheerio = require("cheerio");
 var appDir = path.resolve("./");
-var metadataPath = path.resolve("metadata.json")
+var metadataPath = path.resolve("metadata.json");
 
 class DexTemplatePlugin {
   apply(compiler) {
     compiler.hooks.done.tap("Bindings Plugin", stats => {
       if (!fs.existsSync(metadataPath)) {
-        console.log("Missing metadata.json")
+        console.log("Missing metadata.json");
         return;
       }
       var metadata = require(metadataPath);
@@ -27,17 +27,15 @@ class DexTemplatePlugin {
 
         const $ = cheerio.load(html);
         let bindingContainer = $("<div>");
-        bindingContainer.attr("dex-template", "")
+        bindingContainer.attr("dex-template", "");
         $("head").append(bindingContainer);
-        console.log(bindingContainer.text())
         bindings.forEach(binding => {
           if ($(`#${binding.id}`).length === 0)
             bindingContainer.append(
               `<span id=${binding.id} hidden>{{${binding.id}}}</span>`
             );
-            console.log(bindingContainer.text())
         });
-        
+
         fs.writeFileSync(indexPath, $.html());
         html = $.html();
         if (fs.existsSync(metadata.icon)) {
