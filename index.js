@@ -8,6 +8,7 @@ var metadataPath = path.resolve("metadata.json");
 class DexTemplatePlugin {
   apply(compiler) {
     compiler.hooks.done.tap("Bindings Plugin", stats => {
+      if (stats.compilation.compiler.watchMode) return;
       if (!fs.existsSync(metadataPath)) {
         console.log("Missing metadata.json");
         return;
