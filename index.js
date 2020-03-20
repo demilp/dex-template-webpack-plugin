@@ -6,6 +6,9 @@ var appDir = path.resolve("./");
 var metadataPath = path.resolve("metadata.json");
 
 class DexTemplatePlugin {
+  constructor(generatePreview = true){
+    this.preview = generatePreview;   
+  }
   apply(compiler) {
     compiler.hooks.done.tap("Bindings Plugin", stats => {
       if (stats.compilation.compiler.watchMode) return;
@@ -57,10 +60,12 @@ class DexTemplatePlugin {
         bindings.forEach(binding => {
           html = html.replace(`{{${binding.id}}}`, binding.value);
         });
-        let previewPath = indexPath.replace(".html", ".preview.html");
-        fs.writeFileSync(previewPath, html);
-        if (!fs.existsSync(path.join(appDir, "builds"))) {
-          fs.mkdirSync(path.join(appDir, "builds"));
+        if(this.preview){
+          let previewPath = indexPath.replace(".html", ".preview.html");
+          fs.writeFileSync(previewPath, html);
+          if (!fs.existsSync(path.join(appDir, "builds"))) {
+            fs.mkdirSync(path.join(appDir, "builds"));
+          }
         }
         var zip = fs.createWriteStream(
           path.join(
